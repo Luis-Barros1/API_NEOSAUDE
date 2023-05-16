@@ -4,6 +4,8 @@ import br.com.neosaude.api.domain.paciente.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.paciente.DTODetalhamentoPaciente;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.PacienteRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,9 +16,11 @@ import java.net.URI;
 @RequestMapping("/api/paciente")
 public class PacienteController {
 
+    @Autowired
     private PacienteRepository pacienteRepository;
 
     @PostMapping
+    @Transactional
     public ResponseEntity cadastrarPaciente(@RequestBody DTOCadastroPaciente dados, UriComponentsBuilder uriBuilder){
         Paciente paciente = new Paciente(dados);
         pacienteRepository.save(paciente);
@@ -28,6 +32,6 @@ public class PacienteController {
     @GetMapping("/{id}")
     public ResponseEntity<DTODetalhamentoPaciente> detalharPaciente(@PathVariable Long id){
         Paciente paciente = pacienteRepository.getReferenceById(id);
-        return ResponseEntity.ok().body(new DTODetalhamentoPaciente(paciente));
+        return ResponseEntity.ok(new DTODetalhamentoPaciente(paciente));
     }
 }

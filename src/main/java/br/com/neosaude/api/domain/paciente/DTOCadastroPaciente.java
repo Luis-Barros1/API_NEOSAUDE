@@ -15,7 +15,6 @@ public record DTOCadastroPaciente(
         @NotBlank
         String nome,
         LocalDate dataNascimento,
-        @NotBlank
         String email,
         @NotBlank
         String celular) {

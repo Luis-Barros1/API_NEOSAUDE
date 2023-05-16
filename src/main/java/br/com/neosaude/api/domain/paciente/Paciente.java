@@ -25,7 +25,7 @@ public class Paciente {
     private String email;
     private String celular;
 
-    @OneToMany(mappedBy = "pacienteDiagnosticado")
+    @OneToMany(mappedBy = "pacienteDiagnosticado", fetch = FetchType.LAZY)
     private List<Alergia> alergias;
 
     public Paciente(DTOCadastroPaciente dados) {

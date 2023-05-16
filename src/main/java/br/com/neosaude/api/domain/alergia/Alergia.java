@@ -2,6 +2,7 @@ package br.com.neosaude.api.domain.alergia;
 
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.PacienteRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,6 @@ import java.time.LocalDate;
 @Setter
 @EqualsAndHashCode(of = "id")
 public class Alergia {
-
-    //@Autowired
-    //private PacienteRepository pacienteRepository;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,17 +38,18 @@ public class Alergia {
     private LocalDate dataDiagnostico;
     private LocalDate dataUltimaReacao;
 
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "id_paciente")
     private Paciente pacienteDiagnosticado;
 
-    public Alergia(DTOCadastroAlergia dados) {
+    public Alergia(DTOCadastroAlergia dados, Paciente pacienteAlergico) {
         this.intensidade = dados.intensidade();
         this.tipoAlergia = dados.tipoAlergia();
         this.descricao = dados.descricao();
         this.tratamento = dados.tratamento();
         this.dataDiagnostico = dados.dataDiagnostico();
         this.dataUltimaReacao = dados.dataUltimaReacao();
-
-        this.pacienteDiagnosticado = pacienteRepository.getReferenceById(dados.idPacienteDiagnosticado());
+        this.pacienteDiagnosticado = pacienteAlergico;
     }
 }
