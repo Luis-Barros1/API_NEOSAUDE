@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,12 @@ public class AlergiaController {
 
     @Autowired
     private CriarAlergiaService criarAlergiaService;
+
+    @Autowired
+    private ObterUltimaReacaoService obterUltimaReacaoService;
+
+    @Autowired
+    private ContagemAlergiasService contagemAlergiasService;
 
     @PostMapping
     @Transactional
@@ -40,5 +47,25 @@ public class AlergiaController {
     public ResponseEntity<List<Alergia>> obterAlergias(@PathVariable Long idPaciente){
         List<Alergia> listaAlergias = alergiaRepository.findByIdPaciente(idPaciente);
         return ResponseEntity.ok(listaAlergias);
+    }
+
+    @GetMapping("/ultimaReacao/paciente/{idPaciente}")
+    public ResponseEntity<DTOUltimaReacaoAlergica> obterUltimaReacao(@PathVariable Long idPaciente){
+        DTOUltimaReacaoAlergica dtoUltimaReacaoAlergica = obterUltimaReacaoService.obterUltimaReacao(idPaciente);
+
+        return ResponseEntity.ok(dtoUltimaReacaoAlergica);
+    }
+
+    @GetMapping("/contar/paciente/{idPaciente}")
+    public ResponseEntity<DTOContagemAlergias> contarAlergiasPaciente(@PathVariable Long idPaciente){
+        return ResponseEntity.ok(contagemAlergiasService.contarAlergias(idPaciente));
+    }
+
+    @Transactional
+    @DeleteMapping("/{idAlergia}")
+    public ResponseEntity deletarAlergia(@PathVariable Long idAlergia){
+        Alergia alergia = alergiaRepository.getReferenceById(idAlergia);
+        alergiaRepository.delete(alergia);
+        return ResponseEntity.noContent().build();
     }
 }
