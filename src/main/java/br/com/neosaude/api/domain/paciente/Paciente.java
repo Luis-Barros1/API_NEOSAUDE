@@ -19,10 +19,19 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 20, nullable = false, unique = true)
     private String cpf;
+
+    @Column(length = 100, nullable = false)
     private String nome;
+
     private LocalDate dataNascimento;
+
+    @Column(length = 100, unique = true)
     private String email;
+
+    @Column(length = 20, nullable = false, unique = true)
     private String celular;
 
     @OneToMany(mappedBy = "pacienteDiagnosticado", fetch = FetchType.LAZY)

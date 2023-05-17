@@ -3,6 +3,7 @@ package br.com.neosaude.api.controller;
 import br.com.neosaude.api.domain.alergia.*;
 import com.electronwill.nightconfig.core.conversion.Path;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class AlergiaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrarAlergia(@RequestBody DTOCadastroAlergia dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity cadastrarAlergia(@RequestBody @Valid DTOCadastroAlergia dados, UriComponentsBuilder uriBuilder){
         Alergia alergia = criarAlergiaService.criarAlergia(dados);
         URI uri = uriBuilder.path("/api/alergia/{id}").buildAndExpand(alergia.getId()).toUri();
 
