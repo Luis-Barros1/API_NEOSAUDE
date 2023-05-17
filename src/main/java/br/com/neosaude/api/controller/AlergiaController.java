@@ -28,6 +28,8 @@ public class AlergiaController {
     @Autowired
     private ContagemAlergiasService contagemAlergiasService;
 
+
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarAlergia(@RequestBody DTOCadastroAlergia dados, UriComponentsBuilder uriBuilder){
@@ -67,5 +69,14 @@ public class AlergiaController {
         Alergia alergia = alergiaRepository.getReferenceById(idAlergia);
         alergiaRepository.delete(alergia);
         return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @PutMapping
+    public ResponseEntity<DTODetalhamentoAlergia> atualizarAlergia(@RequestBody DTOAtualizacaoAlergia dados){
+        Alergia alergia = alergiaRepository.getReferenceById(dados.id());
+        alergia.atualizarDados(dados);
+
+        return ResponseEntity.ok(new DTODetalhamentoAlergia(alergiaRepository.getReferenceById(dados.id())));
     }
 }

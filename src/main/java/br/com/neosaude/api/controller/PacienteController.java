@@ -39,10 +39,12 @@ public class PacienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @Transactional
     @PutMapping
     public ResponseEntity<DTODetalhamentoPaciente> atualizarPaciente(@RequestBody DTOAtualizacaoPaciente dados){
         Paciente paciente = pacienteRepository.getReferenceById(dados.id());
-        pacienteRepository.save(paciente);
-        return ResponseEntity.ok(new DTODetalhamentoPaciente(paciente));
+        paciente.atualizarDados(dados);
+
+        return ResponseEntity.ok(new DTODetalhamentoPaciente(pacienteRepository.getReferenceById(dados.id())));
     }
 }

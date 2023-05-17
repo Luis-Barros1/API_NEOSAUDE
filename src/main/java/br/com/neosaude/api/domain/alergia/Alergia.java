@@ -52,4 +52,11 @@ public class Alergia {
         this.dataUltimaReacao = dados.dataUltimaReacao();
         this.pacienteDiagnosticado = pacienteAlergico;
     }
+
+    public void atualizarDados(DTOAtualizacaoAlergia dados) {
+        if(dados.intensidadeAlergia() != null) this.intensidade = dados.intensidadeAlergia();
+        if(dados.dataUltimaReacao() != null) this.dataUltimaReacao = dados.dataUltimaReacao();
+        if(dados.descricao() != null) this.descricao = dados.descricao();
+        if(dados.tratamento() != null) this.tratamento = dados.tratamento();
+    }
 }
