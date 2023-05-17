@@ -1,9 +1,6 @@
 package br.com.neosaude.api.controller;
 
-import br.com.neosaude.api.domain.paciente.DTOCadastroPaciente;
-import br.com.neosaude.api.domain.paciente.DTODetalhamentoPaciente;
-import br.com.neosaude.api.domain.paciente.Paciente;
-import br.com.neosaude.api.domain.paciente.PacienteRepository;
+import br.com.neosaude.api.domain.paciente.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +29,20 @@ public class PacienteController {
     @GetMapping("/{id}")
     public ResponseEntity<DTODetalhamentoPaciente> detalharPaciente(@PathVariable Long id){
         Paciente paciente = pacienteRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DTODetalhamentoPaciente(paciente));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletarPaciente(@PathVariable Long id){
+        Paciente paciente = pacienteRepository.getReferenceById(id);
+        pacienteRepository.delete(paciente);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<DTODetalhamentoPaciente> atualizarPaciente(@RequestBody DTOAtualizacaoPaciente dados){
+        Paciente paciente = pacienteRepository.getReferenceById(dados.id());
+        pacienteRepository.save(paciente);
         return ResponseEntity.ok(new DTODetalhamentoPaciente(paciente));
     }
 }
