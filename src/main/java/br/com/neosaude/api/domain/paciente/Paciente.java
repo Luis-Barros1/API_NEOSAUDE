@@ -35,4 +35,11 @@ public class Paciente {
         this.email = dados.email();
         this.celular = dados.celular();
     }
+
+    public void atualizarDados(DTOAtualizacaoPaciente dados) {
+        //if(dados.nome() != null)
+        this.nome = dados.nome();
+        //if(dados.email() != null) this.email = dados.email();
+        //if(dados.dataNascimento() != null) this.dataNascimento = dados.dataNascimento();
+    }
 }
