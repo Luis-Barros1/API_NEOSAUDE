@@ -1,6 +1,7 @@
 package br.com.neosaude.api.domain.paciente;
 
 import br.com.neosaude.api.domain.alergia.Alergia;
+import br.com.neosaude.api.domain.receita.Receita;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +37,9 @@ public class Paciente {
 
     @OneToMany(mappedBy = "pacienteDiagnosticado", fetch = FetchType.LAZY)
     private List<Alergia> alergias;
+
+    @OneToMany(mappedBy = "pacienteTratado", fetch = FetchType.LAZY)
+    private List<Receita> receitas;
 
     public Paciente(DTOCadastroPaciente dados) {
         this.cpf = dados.cpf();

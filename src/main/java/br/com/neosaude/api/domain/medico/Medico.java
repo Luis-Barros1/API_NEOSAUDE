@@ -1,9 +1,12 @@
 package br.com.neosaude.api.domain.medico;
 
+import br.com.neosaude.api.domain.receita.Receita;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "medicos")
@@ -37,6 +40,9 @@ public class Medico {
 
     @Column(length = 20, unique = true, nullable = false)
     private String celular;
+
+    @OneToMany(mappedBy = "medicoResponsavel", fetch = FetchType.LAZY)
+    private List<Receita> receitas;
 
     public Medico(DTOCadastroMedico dados) {
         this.crm = dados.crm();

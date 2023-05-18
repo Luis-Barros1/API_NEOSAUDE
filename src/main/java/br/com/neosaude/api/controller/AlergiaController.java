@@ -74,7 +74,7 @@ public class AlergiaController {
 
     @Transactional
     @PutMapping
-    public ResponseEntity<DTODetalhamentoAlergia> atualizarAlergia(@RequestBody DTOAtualizacaoAlergia dados){
+    public ResponseEntity<DTODetalhamentoAlergia> atualizarAlergia(@RequestBody @Valid DTOAtualizacaoAlergia dados){
         Alergia alergia = alergiaRepository.getReferenceById(dados.id());
         alergia.atualizarDados(dados);
 

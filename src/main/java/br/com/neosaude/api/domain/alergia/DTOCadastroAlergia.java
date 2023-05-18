@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public record DTOCadastroAlergia(
         @NotNull
         Long idPacienteDiagnosticado,
-        @NotBlank
+        @NotNull
         IntensidadeAlergia intensidade,
         @NotBlank
         String tipoAlergia,
