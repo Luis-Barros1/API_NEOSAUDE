@@ -1,10 +1,8 @@
-package br.com.neosaude.api.domain.receita;
+package br.com.neosaude.api.domain.receita.dto;
 
-import br.com.neosaude.api.domain.medico.DTODetalhamentoMedico;
-import br.com.neosaude.api.domain.prescricao.DTODetalhamentoPrescricao;
-import br.com.neosaude.api.domain.prescricao.Prescricao;
-import br.com.neosaude.api.domain.prescricao.PrescricaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.neosaude.api.domain.medico.dto.DTODetalhamentoMedico;
+import br.com.neosaude.api.domain.prescricao.dto.DTODetalhamentoPrescricao;
+import br.com.neosaude.api.domain.receita.Receita;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,4 @@
-package br.com.neosaude.api.domain.prescricao;
+package br.com.neosaude.api.domain.prescricao.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,6 +1,10 @@
 package br.com.neosaude.api.controller;
 
 import br.com.neosaude.api.domain.paciente.*;
+import br.com.neosaude.api.domain.paciente.dto.DTOAtualizacaoPaciente;
+import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
+import br.com.neosaude.api.domain.paciente.dto.DTODetalhamentoPaciente;
+import br.com.neosaude.api.domain.paciente.Paciente;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

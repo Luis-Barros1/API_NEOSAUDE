@@ -1,7 +1,8 @@
 package br.com.neosaude.api.domain.medico;
 
+import br.com.neosaude.api.domain.medico.dto.DTOAtualizacaoMedico;
+import br.com.neosaude.api.domain.medico.dto.DTOCadastroMedico;
 import br.com.neosaude.api.domain.receita.Receita;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

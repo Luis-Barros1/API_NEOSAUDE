@@ -1,6 +1,8 @@
 package br.com.neosaude.api.domain.paciente;
 
 import br.com.neosaude.api.domain.alergia.Alergia;
+import br.com.neosaude.api.domain.paciente.dto.DTOAtualizacaoPaciente;
+import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.receita.Receita;
 import jakarta.persistence.*;
 import lombok.*;

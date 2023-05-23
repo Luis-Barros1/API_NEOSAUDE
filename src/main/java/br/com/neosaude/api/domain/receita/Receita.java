@@ -4,6 +4,7 @@ package br.com.neosaude.api.domain.receita;
 import br.com.neosaude.api.domain.medico.Medico;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.prescricao.Prescricao;
+import br.com.neosaude.api.domain.receita.dto.DTOAtualizacaoReceita;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,7 @@
-package br.com.neosaude.api.domain.alergia;
+package br.com.neosaude.api.domain.alergia.dto;
 
-import org.springframework.cglib.core.Local;
+import br.com.neosaude.api.domain.alergia.IntensidadeAlergia;
+import br.com.neosaude.api.domain.alergia.Alergia;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,6 @@
-package br.com.neosaude.api.domain.medico;
+package br.com.neosaude.api.domain.medico.dto;
+
+import br.com.neosaude.api.domain.medico.Medico;
 
 import java.time.LocalDate;
 

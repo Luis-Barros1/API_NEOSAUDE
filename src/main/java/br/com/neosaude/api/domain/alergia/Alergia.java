@@ -1,11 +1,12 @@
 package br.com.neosaude.api.domain.alergia;
 
+import br.com.neosaude.api.domain.alergia.dto.DTOAtualizacaoAlergia;
+import br.com.neosaude.api.domain.alergia.dto.DTOCadastroAlergia;
+import br.com.neosaude.api.domain.alergia.IntensidadeAlergia;
 import br.com.neosaude.api.domain.paciente.Paciente;
-import br.com.neosaude.api.domain.paciente.PacienteRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 

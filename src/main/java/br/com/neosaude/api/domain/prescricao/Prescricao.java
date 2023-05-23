@@ -1,11 +1,10 @@
 package br.com.neosaude.api.domain.prescricao;
 
 import br.com.neosaude.api.domain.medicamento.Medicamento;
+import br.com.neosaude.api.domain.prescricao.dto.DTOCadastroPrescricao;
 import br.com.neosaude.api.domain.receita.Receita;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;

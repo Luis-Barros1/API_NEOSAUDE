@@ -1,15 +1,14 @@
-package br.com.neosaude.api.domain.paciente;
+package br.com.neosaude.api.domain.medico.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDate;
+public record DTOAtualizacaoMedico(
 
-public record DTOAtualizacaoPaciente(
         @NotNull
         Long id,
-        String nome,
-        LocalDate dataNascimento,
+        String especialidade,
+        String clinica,
 
         @Email
         String email) {

@@ -1,5 +1,6 @@
-package br.com.neosaude.api.domain.alergia;
+package br.com.neosaude.api.domain.alergia.dto;
 
+import br.com.neosaude.api.domain.alergia.IntensidadeAlergia;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

@@ -1,8 +1,12 @@
 package br.com.neosaude.api.controller;
 
-import br.com.neosaude.api.domain.prescricao.ObterPrescricoesService;
+import br.com.neosaude.api.domain.prescricao.service.ObterPrescricoesService;
 import br.com.neosaude.api.domain.prescricao.PrescricaoRepository;
 import br.com.neosaude.api.domain.receita.*;
+import br.com.neosaude.api.domain.receita.dto.DTOAtualizacaoReceita;
+import br.com.neosaude.api.domain.receita.dto.DTOCadastroReceita;
+import br.com.neosaude.api.domain.receita.dto.DTODetalhamentoReceita;
+import br.com.neosaude.api.domain.receita.service.AdicionarReceitaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

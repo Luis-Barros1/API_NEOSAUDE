@@ -1,7 +1,11 @@
 package br.com.neosaude.api.controller;
 
-import br.com.neosaude.api.domain.alergia.*;
-import com.electronwill.nightconfig.core.conversion.Path;
+import br.com.neosaude.api.domain.alergia.dto.*;
+import br.com.neosaude.api.domain.alergia.Alergia;
+import br.com.neosaude.api.domain.alergia.AlergiaRepository;
+import br.com.neosaude.api.domain.alergia.service.ContagemAlergiasService;
+import br.com.neosaude.api.domain.alergia.service.CriarAlergiaService;
+import br.com.neosaude.api.domain.alergia.service.ObterUltimaReacaoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

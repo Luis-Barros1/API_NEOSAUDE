@@ -1,4 +1,6 @@
-package br.com.neosaude.api.domain.alergia;
+package br.com.neosaude.api.domain.alergia.dto;
+
+import br.com.neosaude.api.domain.alergia.Alergia;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,7 @@
-package br.com.neosaude.api.domain.prescricao;
+package br.com.neosaude.api.domain.prescricao.dto;
 
-import br.com.neosaude.api.domain.medicamento.DTODetalhamentoMedicamento;
+import br.com.neosaude.api.domain.medicamento.dto.DTODetalhamentoMedicamento;
+import br.com.neosaude.api.domain.prescricao.Prescricao;
 
 import java.time.LocalDate;
 

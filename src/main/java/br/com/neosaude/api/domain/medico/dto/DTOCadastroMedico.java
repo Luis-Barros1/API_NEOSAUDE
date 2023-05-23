@@ -1,4 +1,4 @@
-package br.com.neosaude.api.domain.medico;
+package br.com.neosaude.api.domain.medico.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,5 +1,8 @@
-package br.com.neosaude.api.domain.alergia;
+package br.com.neosaude.api.domain.alergia.service;
 
+import br.com.neosaude.api.domain.alergia.dto.DTOCadastroAlergia;
+import br.com.neosaude.api.domain.alergia.Alergia;
+import br.com.neosaude.api.domain.alergia.AlergiaRepository;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

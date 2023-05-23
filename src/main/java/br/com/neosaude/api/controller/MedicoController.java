@@ -1,6 +1,10 @@
 package br.com.neosaude.api.controller;
 
-import br.com.neosaude.api.domain.medico.*;
+import br.com.neosaude.api.domain.medico.dto.DTOAtualizacaoMedico;
+import br.com.neosaude.api.domain.medico.dto.DTOCadastroMedico;
+import br.com.neosaude.api.domain.medico.dto.DTODetalhamentoMedico;
+import br.com.neosaude.api.domain.medico.Medico;
+import br.com.neosaude.api.domain.medico.MedicoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
