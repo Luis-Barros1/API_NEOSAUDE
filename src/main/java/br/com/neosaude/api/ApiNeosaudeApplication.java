@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ApiNeosaudeApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Versão 0");
 		SpringApplication.run(ApiNeosaudeApplication.class, args);
 	}
 
