@@ -2,7 +2,6 @@ package br.com.neosaude.api.domain.alergia;
 
 import br.com.neosaude.api.domain.alergia.dto.DTOAtualizacaoAlergia;
 import br.com.neosaude.api.domain.alergia.dto.DTOCadastroAlergia;
-import br.com.neosaude.api.domain.alergia.IntensidadeAlergia;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
