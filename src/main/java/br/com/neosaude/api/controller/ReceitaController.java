@@ -6,7 +6,9 @@ import br.com.neosaude.api.domain.receita.*;
 import br.com.neosaude.api.domain.receita.dto.DTOAtualizacaoReceita;
 import br.com.neosaude.api.domain.receita.dto.DTOCadastroReceita;
 import br.com.neosaude.api.domain.receita.dto.DTODetalhamentoReceita;
+import br.com.neosaude.api.domain.receita.dto.DTOListagemReceita;
 import br.com.neosaude.api.domain.receita.service.AdicionarReceitaService;
+import br.com.neosaude.api.domain.receita.service.ListarReceitasServices;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class ReceitaController {
     @Autowired
     private ObterPrescricoesService obterPrescricoesService;
 
+    @Autowired
+    private ListarReceitasServices listarReceitasServices;
+
 
     @Transactional
     @PostMapping
@@ -59,13 +64,13 @@ public class ReceitaController {
     }
 
     @GetMapping("/ativas/{idPaciente}")
-    public ResponseEntity<List<Receita>> obterTodasReceitasAtivas(@PathVariable Long idPaciente){
-        return ResponseEntity.ok(receitaRepository.findReceitaAtivaByPaciente(idPaciente));
+    public ResponseEntity<List<DTOListagemReceita>> obterTodasReceitasAtivas(@PathVariable Long idPaciente){
+        return ResponseEntity.ok(listarReceitasServices.listarReceitasAtivas(idPaciente));
     }
 
     @GetMapping("/inativas/{idPaciente}")
-    public ResponseEntity<List<Receita>> obterTodasReceitasInativas(@PathVariable Long idPaciente){
-        return ResponseEntity.ok(receitaRepository.findReceitaInativaByPaciente(idPaciente));
+    public ResponseEntity<List<DTOListagemReceita>> obterTodasReceitasInativas(@PathVariable Long idPaciente){
+        return ResponseEntity.ok(listarReceitasServices.listarReceitasInativas(idPaciente));
     }
 
     @GetMapping("/ativas/contar/{idPaciente}")
