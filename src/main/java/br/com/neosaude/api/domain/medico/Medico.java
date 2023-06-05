@@ -3,6 +3,7 @@ package br.com.neosaude.api.domain.medico;
 import br.com.neosaude.api.domain.medico.dto.DTOAtualizacaoMedico;
 import br.com.neosaude.api.domain.medico.dto.DTOCadastroMedico;
 import br.com.neosaude.api.domain.receita.Receita;
+import br.com.neosaude.api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,10 +43,14 @@ public class Medico {
     @Column(length = 20, unique = true, nullable = false)
     private String celular;
 
-    @OneToMany(mappedBy = "medicoResponsavel", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "medicoResponsavel", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Receita> receitas;
 
-    public Medico(DTOCadastroMedico dados) {
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuarioMedico;
+
+    public Medico(DTOCadastroMedico dados, Usuario usuario) {
         this.crm = dados.crm();
         this.nome = dados.nome();
         this.especialidade = dados.especialidade();
@@ -53,6 +58,7 @@ public class Medico {
         this.dataNascimento = dados.dataNascimento();
         this.email = dados.email();
         this.celular = dados.celular();
+        this.usuarioMedico = usuario;
     }
 
     public void atualizarDados(DTOAtualizacaoMedico dados) {

@@ -23,5 +23,9 @@ public record DTOCadastroMedico(
         String email,
 
         @NotBlank
-        String celular) {
+        String celular,
+
+        @NotBlank
+        String senha
+) {
 }

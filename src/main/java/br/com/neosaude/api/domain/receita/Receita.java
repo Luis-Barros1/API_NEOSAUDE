@@ -43,7 +43,7 @@ public class Receita {
     @JoinColumn(name = "id_paciente")
     private Paciente pacienteTratado;
 
-    @OneToMany(mappedBy = "receitaOrigem")
+    @OneToMany(mappedBy = "receitaOrigem", cascade = CascadeType.REMOVE)
     private List<Prescricao> prescricoes;
 
     public Receita(Paciente paciente, Medico medico, LocalDate dataExpedicao, String observacao) {

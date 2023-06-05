@@ -4,6 +4,7 @@ import br.com.neosaude.api.domain.alergia.Alergia;
 import br.com.neosaude.api.domain.paciente.dto.DTOAtualizacaoPaciente;
 import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.receita.Receita;
+import br.com.neosaude.api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,18 +38,23 @@ public class Paciente {
     @Column(length = 20, nullable = false, unique = true)
     private String celular;
 
-    @OneToMany(mappedBy = "pacienteDiagnosticado", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pacienteDiagnosticado", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Alergia> alergias;
 
-    @OneToMany(mappedBy = "pacienteTratado", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pacienteTratado", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Receita> receitas;
 
-    public Paciente(DTOCadastroPaciente dados) {
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuarioPaciente;
+
+    public Paciente(DTOCadastroPaciente dados, Usuario usuario) {
         this.cpf = dados.cpf();
         this.nome = dados.nome();
         this.dataNascimento = dados.dataNascimento();
         this.email = dados.email();
         this.celular = dados.celular();
+        this.usuarioPaciente = usuario;
     }
 
     public void atualizarDados(DTOAtualizacaoPaciente dados) {

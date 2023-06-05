@@ -1,5 +1,7 @@
 package br.com.neosaude.api.domain.usuario;
 
+import br.com.neosaude.api.domain.medico.Medico;
+import br.com.neosaude.api.domain.paciente.Paciente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,6 +31,17 @@ public class Usuario implements UserDetails {
 
     @Column(length = 255, nullable = false)
     private String senha;
+
+    @OneToOne(mappedBy = "usuarioMedico")
+    private Medico medico;
+
+    @OneToOne(mappedBy = "usuarioPaciente")
+    private Paciente paciente;
+
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -5,6 +5,7 @@ import br.com.neosaude.api.domain.medico.dto.DTOCadastroMedico;
 import br.com.neosaude.api.domain.medico.dto.DTODetalhamentoMedico;
 import br.com.neosaude.api.domain.medico.Medico;
 import br.com.neosaude.api.domain.medico.MedicoRepository;
+import br.com.neosaude.api.domain.medico.service.AdicionarMedicoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ public class MedicoController {
     @Autowired
     private MedicoRepository medicoRepository;
 
+    @Autowired
+    private AdicionarMedicoService adicionarMedicoService;
+
     @Transactional
     @PostMapping
     public ResponseEntity cadastrarMedico(@RequestBody @Valid DTOCadastroMedico dados, UriComponentsBuilder uriBuilder){
-        Medico medico = new Medico(dados);
-        medicoRepository.save(medico);
+        Medico medico = adicionarMedicoService.cadastrar(dados);
         URI uri = uriBuilder.path("/api/medico/{id}").buildAndExpand(medico.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DTODetalhamentoMedico(medico));

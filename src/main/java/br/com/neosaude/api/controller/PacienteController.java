@@ -5,6 +5,7 @@ import br.com.neosaude.api.domain.paciente.dto.DTOAtualizacaoPaciente;
 import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.paciente.dto.DTODetalhamentoPaciente;
 import br.com.neosaude.api.domain.paciente.Paciente;
+import br.com.neosaude.api.domain.paciente.service.AdicionarPacienteService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,13 @@ public class PacienteController {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private AdicionarPacienteService adicionarPacienteService;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarPaciente(@RequestBody DTOCadastroPaciente dados, UriComponentsBuilder uriBuilder){
-        Paciente paciente = new Paciente(dados);
-        pacienteRepository.save(paciente);
+        Paciente paciente = adicionarPacienteService.cadastrar(dados);
         URI uri = uriBuilder.path("/api/paciente/{id}").buildAndExpand(paciente.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DTODetalhamentoPaciente(paciente));

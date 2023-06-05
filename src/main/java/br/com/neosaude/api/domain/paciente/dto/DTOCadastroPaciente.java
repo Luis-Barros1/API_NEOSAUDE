@@ -17,5 +17,9 @@ public record DTOCadastroPaciente(
         LocalDate dataNascimento,
         String email,
         @NotBlank
-        String celular) {
+        String celular,
+
+        @NotBlank
+        String senha
+) {
 }
