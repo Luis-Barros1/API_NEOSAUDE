@@ -6,6 +6,7 @@ import br.com.neosaude.api.domain.alergia.AlergiaRepository;
 import br.com.neosaude.api.domain.alergia.service.ContagemAlergiasService;
 import br.com.neosaude.api.domain.alergia.service.CriarAlergiaService;
 import br.com.neosaude.api.domain.alergia.service.ObterUltimaReacaoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/alergia")
+@SecurityRequirement(name = "bearer-key")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class AlergiaController {
 

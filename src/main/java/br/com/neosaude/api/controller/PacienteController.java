@@ -6,6 +6,7 @@ import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.paciente.dto.DTODetalhamentoPaciente;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.service.AdicionarPacienteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/paciente")
+@SecurityRequirement(name = "bearer-key")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class PacienteController {
 

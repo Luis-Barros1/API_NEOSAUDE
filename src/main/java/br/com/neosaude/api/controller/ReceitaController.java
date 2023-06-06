@@ -9,6 +9,7 @@ import br.com.neosaude.api.domain.receita.dto.DTODetalhamentoReceita;
 import br.com.neosaude.api.domain.receita.dto.DTOListagemReceita;
 import br.com.neosaude.api.domain.receita.service.AdicionarReceitaService;
 import br.com.neosaude.api.domain.receita.service.ListarReceitasServices;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/receita")
+@SecurityRequirement(name = "bearer-key")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class ReceitaController {
 

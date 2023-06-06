@@ -6,6 +6,7 @@ import br.com.neosaude.api.domain.medicamento.service.ObterMedicamentosService;
 import br.com.neosaude.api.domain.medicamento.dto.DTOAtualizacaoMedicamento;
 import br.com.neosaude.api.domain.medicamento.dto.DTOCadastroMedicamento;
 import br.com.neosaude.api.domain.medicamento.dto.DTODetalhamentoMedicamento;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/medicamento")
+@SecurityRequirement(name = "bearer-key")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class MedicamentoController {
 
