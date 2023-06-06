@@ -6,6 +6,7 @@ import br.com.neosaude.api.domain.paciente.dto.DTOCadastroPaciente;
 import br.com.neosaude.api.domain.paciente.dto.DTODetalhamentoPaciente;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.service.AdicionarPacienteService;
+import br.com.neosaude.api.domain.paciente.service.ObterPacientePorCpfService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class PacienteController {
     @Autowired
     private AdicionarPacienteService adicionarPacienteService;
 
+
+    @Autowired
+    private ObterPacientePorCpfService obterPacientePorCpfService;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarPaciente(@RequestBody DTOCadastroPaciente dados, UriComponentsBuilder uriBuilder){
@@ -34,6 +39,12 @@ public class PacienteController {
         URI uri = uriBuilder.path("/api/paciente/{id}").buildAndExpand(paciente.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DTODetalhamentoPaciente(paciente));
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<DTODetalhamentoPaciente> obterPorCpf(@PathVariable String cpf){
+        Paciente paciente = obterPacientePorCpfService.obter(cpf);
+        return ResponseEntity.ok(new DTODetalhamentoPaciente(paciente));
     }
 
     @GetMapping("/{id}")

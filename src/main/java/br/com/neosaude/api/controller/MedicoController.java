@@ -6,9 +6,11 @@ import br.com.neosaude.api.domain.medico.dto.DTODetalhamentoMedico;
 import br.com.neosaude.api.domain.medico.Medico;
 import br.com.neosaude.api.domain.medico.MedicoRepository;
 import br.com.neosaude.api.domain.medico.service.AdicionarMedicoService;
+import br.com.neosaude.api.domain.medico.service.ObterMedicoPorCrmService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,10 @@ public class MedicoController {
     @Autowired
     private AdicionarMedicoService adicionarMedicoService;
 
+    @Autowired
+    private ObterMedicoPorCrmService obterMedicoPorCrmService;
+
+
     @Transactional
     @PostMapping
     public ResponseEntity cadastrarMedico(@RequestBody @Valid DTOCadastroMedico dados, UriComponentsBuilder uriBuilder){
@@ -35,6 +41,12 @@ public class MedicoController {
         URI uri = uriBuilder.path("/api/medico/{id}").buildAndExpand(medico.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DTODetalhamentoMedico(medico));
+    }
+
+    @GetMapping("/crm/{crm}")
+    public ResponseEntity<DTODetalhamentoMedico> obterPorCrm(@PathVariable String crm){
+        Medico medico = obterMedicoPorCrmService.obter(crm);
+        return ResponseEntity.ok(new DTODetalhamentoMedico(medico));
     }
 
     @GetMapping("/{id}")
