@@ -58,9 +58,8 @@ public class Paciente {
     }
 
     public void atualizarDados(DTOAtualizacaoPaciente dados) {
-        //if(dados.nome() != null)
-        this.nome = dados.nome();
-        //if(dados.email() != null) this.email = dados.email();
-        //if(dados.dataNascimento() != null) this.dataNascimento = dados.dataNascimento();
+        if(dados.nome() != null) this.nome = dados.nome();
+        if(dados.email() != null) this.email = dados.email();
+        if(dados.dataNascimento() != null) this.dataNascimento = dados.dataNascimento();
     }
 }

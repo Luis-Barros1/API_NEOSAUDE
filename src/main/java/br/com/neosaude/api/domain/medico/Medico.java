@@ -65,5 +65,6 @@ public class Medico {
         if(dados.especialidade() != null) this.especialidade = dados.especialidade();
         if(dados.clinica() != null) this.clinica = dados.clinica();
         if(dados.email() != null) this.email = dados.email();
+        if(dados.dataNascimento() != null) this.dataNascimento = dados.dataNascimento();
     }
 }
