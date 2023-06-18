@@ -1,11 +1,9 @@
 package br.com.neosaude.api.domain.medico.service;
 
 
-import br.com.neosaude.api.domain.medicamento.MedicamentoRepository;
 import br.com.neosaude.api.domain.medico.Medico;
 import br.com.neosaude.api.domain.medico.MedicoRepository;
 import br.com.neosaude.api.domain.medico.dto.DTOCadastroMedico;
-import br.com.neosaude.api.domain.medico.dto.DTODetalhamentoMedico;
 import br.com.neosaude.api.domain.usuario.Usuario;
 import br.com.neosaude.api.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
