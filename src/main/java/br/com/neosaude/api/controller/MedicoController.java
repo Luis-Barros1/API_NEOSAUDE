@@ -7,6 +7,8 @@ import br.com.neosaude.api.domain.medico.Medico;
 import br.com.neosaude.api.domain.medico.MedicoRepository;
 import br.com.neosaude.api.domain.medico.service.AdicionarMedicoService;
 import br.com.neosaude.api.domain.medico.service.ObterMedicoPorCrmService;
+import br.com.neosaude.api.domain.usuario.Usuario;
+import br.com.neosaude.api.domain.usuario.UsuarioRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -32,6 +34,9 @@ public class MedicoController {
 
     @Autowired
     private ObterMedicoPorCrmService obterMedicoPorCrmService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
 
     @Transactional
@@ -68,7 +73,9 @@ public class MedicoController {
     @DeleteMapping("/{id}")
     public ResponseEntity excluirMedico(@PathVariable Long id){
         Medico medico = medicoRepository.getReferenceById(id);
+        Usuario usuario = medico.getUsuarioMedico();
         medicoRepository.delete(medico);
+        usuarioRepository.delete(usuario);
 
         return ResponseEntity.noContent().build();
     }

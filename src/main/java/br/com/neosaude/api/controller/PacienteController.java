@@ -7,6 +7,8 @@ import br.com.neosaude.api.domain.paciente.dto.DTODetalhamentoPaciente;
 import br.com.neosaude.api.domain.paciente.Paciente;
 import br.com.neosaude.api.domain.paciente.service.AdicionarPacienteService;
 import br.com.neosaude.api.domain.paciente.service.ObterPacientePorCpfService;
+import br.com.neosaude.api.domain.usuario.Usuario;
+import br.com.neosaude.api.domain.usuario.UsuarioRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class PacienteController {
     @Autowired
     private ObterPacientePorCpfService obterPacientePorCpfService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarPaciente(@RequestBody DTOCadastroPaciente dados, UriComponentsBuilder uriBuilder){
@@ -54,9 +59,13 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity deletarPaciente(@PathVariable Long id){
         Paciente paciente = pacienteRepository.getReferenceById(id);
+        Usuario usuario = paciente.getUsuarioPaciente();
         pacienteRepository.delete(paciente);
+        usuarioRepository.delete(usuario);
+
         return ResponseEntity.noContent().build();
     }
 
